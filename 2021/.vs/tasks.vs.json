@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "task-day-1",
+      "appliesTo": "day-1/day-1.cs",
+      "type": "launch"
+    }
+  ]
+}

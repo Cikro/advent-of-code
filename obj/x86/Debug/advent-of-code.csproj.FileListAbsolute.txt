@@ -1,0 +1,6 @@
+M:\Projects\advent-of-code\bin\Debug\ConsoleApplication.exe
+M:\Projects\advent-of-code\bin\Debug\ConsoleApplication.pdb
+M:\Projects\advent-of-code\obj\x86\Debug\advent-of-code.csproj.AssemblyReference.cache
+M:\Projects\advent-of-code\obj\x86\Debug\advent-of-code.csproj.CoreCompileInputs.cache
+M:\Projects\advent-of-code\obj\x86\Debug\ConsoleApplication.exe
+M:\Projects\advent-of-code\obj\x86\Debug\ConsoleApplication.pdb
