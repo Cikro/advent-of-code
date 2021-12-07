@@ -25,7 +25,17 @@
       "ProjectGuid": "73873d81-ba46-43b6-a1da-2d31244db097",
       "DisplayName": "day-3",
       "ColorIndex": 3
+    },
+    "30e99b25-225c-4189-85b7-8dfe6c92d5f4": {
+      "ProjectGuid": "30e99b25-225c-4189-85b7-8dfe6c92d5f4",
+      "DisplayName": "day-4",
+      "ColorIndex": 4
+    },
+    "299be2e1-f108-4a31-8b15-b990788f581d": {
+      "ProjectGuid": "299be2e1-f108-4a31-8b15-b990788f581d",
+      "DisplayName": "day-5",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 6
 }
