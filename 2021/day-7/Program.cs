@@ -13,80 +13,54 @@ var lines = File.ReadAllLines(projectDirectory + fileName).ToList();
 
 var startingCrabPositions = lines[0].Split(",").Select(x => int.Parse(x)).GroupBy(i => i).OrderBy(grp => grp.Key).ToList();
 
+var maxPosition = startingCrabPositions[startingCrabPositions.Count - 1].Key;
 
-int[] positions = new int[startingCrabPositions[startingCrabPositions.Count-1].Key+1];
+int[] crabPositions = new int[maxPosition + 1];
+int[] distanceArray = new int[maxPosition+1];
+
+for (int i = 1; i < distanceArray.Length; i++)
+{
+    distanceArray[i] = distanceArray[i-1] + i;
+
+}
 
 
 foreach (var grp in startingCrabPositions)
 {
-    positions[grp.Key] += grp.Count();
+    crabPositions[grp.Key] += grp.Count();
 }
 
 var minFuel = int.MaxValue;
-var currentDirection = direction.right;
-
-var currentSpace = positions.Length / 2;
-var prevSpave = currentSpace;
-var fuel = 0;
-
-var leftFuel = 0;
-var leftCrabs = 0;
-
-var rightFuel = 0;
-var rightCrabs = 0;
-
-// Calcualte total fuel to on the left side and the right side of teh current space
-for (var i = 0; i < positions.Length; i++)
+for (int i = 0; i < crabPositions.Length; i++)
 {
-    if (i < currentSpace)
-    {
-        leftCrabs += positions[i];
-        leftFuel += positions[i] * (currentSpace - i);
-    }
-    else if (i > currentSpace)
-    {
-        rightCrabs += positions[i];
-        rightFuel += positions[i] * (i - currentSpace);
-    }
-}
+   var fuel = calculateFuelAtPosition(i, crabPositions, distanceArray);
 
-fuel = leftFuel + rightFuel;
-
-
-while (fuel < minFuel)
-{
-    prevSpave = currentSpace;
-    minFuel = fuel;
-
-    // move 1 step towards the most crabs
-    // More Left Crabs
-    if (leftCrabs > rightCrabs)
+    if (fuel < minFuel)
     {
-        leftCrabs -= positions[currentSpace - 1];
-        rightCrabs += positions[currentSpace];
-        fuel = fuel + rightCrabs - leftCrabs - positions[currentSpace - 1];
-        currentSpace--;
-    }
-    // More Right Crabs
-    else
-    {
-        rightCrabs -= positions[currentSpace + 1];
-        leftCrabs += positions[currentSpace];
-        fuel = fuel - rightCrabs + leftCrabs - positions[currentSpace + 1]; ;
-        currentSpace++;
+        minFuel = fuel;
     }
 }
 
 
-Console.WriteLine($"LeftCrabs: {leftCrabs}");
-Console.WriteLine($"rightCrabs: {rightCrabs}");
-Console.WriteLine($"currentPosition: {prevSpave}");
 Console.WriteLine($"MinFuel: {minFuel}");
 
-
-
-static int calcFuelUsed(int initialPos, int newPosition)
+int calculateFuelAtPosition(int destination, int[] crabPositions, int[] distanceArray)
 {
-    var distance = Math.Abs(newPosition - initialPos);
-    return 0;
+    int rightFuel = 0;
+    int leftFuel = 0;
+    for (var i = 0; i < crabPositions.Length; i++)
+    {
+
+        if (i < destination)
+        {
+            leftFuel += crabPositions[i] * distanceArray[destination - i];
+        }
+        else if (i > destination)
+        {
+            rightFuel += crabPositions[i] * distanceArray[i - destination];
+        }
+    }
+
+    return rightFuel + leftFuel;
+
 }
